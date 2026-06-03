@@ -738,6 +738,191 @@
       .modal-two-col { grid-template-columns: 1fr; }
     }
 
+    /* ─────────────────────────────── RESUME MODAL ─── */
+    .resume-panel {
+      max-width: 900px;
+      max-height: 90vh;
+    }
+
+    .resume-content {
+      padding: 3rem;
+      color: var(--white);
+      font-family: var(--font-body);
+      background: var(--bg-card);
+    }
+
+    .resume-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resume-name {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .resume-contact {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .resume-contact a {
+      color: var(--cyan);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .resume-contact a:hover {
+      color: #a8fef9;
+      text-decoration: underline;
+    }
+
+    .resume-section {
+      margin-bottom: 2rem;
+    }
+
+    .resume-section-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(102,252,241,0.2);
+    }
+
+    .resume-entry {
+      margin-bottom: 1.5rem;
+    }
+
+    .resume-entry-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .resume-entry-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .resume-entry-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--cyan-dim);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .resume-entry-description {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .resume-entry-description strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .resume-bullets {
+      list-style: none;
+      margin: 0.6rem 0;
+    }
+
+    .resume-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.4rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .resume-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-size: 0.8rem;
+    }
+
+    .resume-skills-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .resume-skills-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .resume-skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .resume-skill {
+      font-size: 0.9rem;
+      background: rgba(102,252,241,0.08);
+      border: 1px solid rgba(102,252,241,0.15);
+      color: var(--muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 3px;
+    }
+
+    .resume-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.6rem;
+      background: var(--cyan);
+      color: #0b0c10;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .resume-download-btn:hover {
+      background: #a8fef9;
+      box-shadow: 0 0 20px rgba(102,252,241,0.4);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .resume-content { padding: 1.5rem; }
+      .resume-panel { max-width: 100%; }
+      .resume-name { font-size: 1.4rem; }
+      .resume-contact { font-size: 0.8rem; }
+    }
+
     /* ─────────────────────────────── EXPERIENCE ─── */
     #experience { background: var(--bg-0); }
 
@@ -1128,7 +1313,7 @@
     <p class="hero-tagline">I craft scalable web experiences from database to deployment — turning complex problems into elegant, maintainable code.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-secondary">Contact Me</a>
+      <button class="btn-secondary" onclick="openResumeModal()" style="cursor: pointer;">View Resume</button>
     </div>
     <div class="hero-socials">
       <!-- GitHub -->
@@ -1342,6 +1527,16 @@
   </div>
 </div>
 
+<!-- ── RESUME MODAL ── -->
+<div id="resumeModal" class="modal-overlay" onclick="closeResumeModal()">
+  <div class="modal-panel resume-panel" id="resumePanel" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeResumeModal()" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="resumeContent" class="resume-content"></div>
+  </div>
+</div>
+
 <!-- ── EXPERIENCE ── -->
 <section id="experience">
   <div class="section-header fade-up">
@@ -1441,7 +1636,7 @@
   <div class="contact-inner">
     <div class="fade-up fade-up-d1">
       <h3 class="contact-heading">Let's build something<br><span class="accent">great together.</span></h3>
-      <p class="contact-sub">I'm open to internship opportunities, freelance projects, and interesting collaborations. Feel free to reach out — I reply within 24 hours.</p>
+      <p class="contact-sub">I'm open to internship opportunities, freelance projects, and interesting collaborations.</p>
     </div>
     <div class="contact-links fade-up fade-up-d2">
 
@@ -1721,6 +1916,242 @@
   // Close on Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeModal();
+  });
+
+  /* ── RESUME MODAL ── */
+  const resumeData = {
+    name: 'NELSON VALANKANI',
+    contact: [
+      { label: 'Location', value: 'Bangalore, Karnataka' },
+      { label: 'Phone', value: '+91 7204059922' },
+      { label: 'Email', value: 'valankaninelson@gmail.com' },
+      { label: 'LinkedIn', url: 'linkedin.com/in/nelson-valankani-0148492a1' },
+      { label: 'GitHub', url: 'github.com/nelson-create' }
+    ],
+    summary: 'Detail-oriented and motivated BCA student with hands-on experience in software engineering, full-stack development, debugging, database management, and REST API integration. Skilled in Java, JavaScript, SQL, React.js, Node.js, MongoDB, HTML, and CSS with understanding of software testing, CRUD operations, object-oriented programming, and version control using Git/GitHub. Experienced in developing scalable web applications and collaborating on software development projects. Passionate about building reliable, high-quality software solutions and continuously learning modern development technologies.',
+    education: [
+      {
+        degree: 'Bachelor of Computer Applications (BCA)',
+        school: 'St. Francis De Sales College, Bangalore',
+        period: 'Aug 2023 – June 2026'
+      },
+      {
+        degree: 'Senior Secondary (CBSE)',
+        school: 'AGPN Convent & E.R School',
+        period: '2023'
+      },
+      {
+        degree: 'SSLC (ICSE)',
+        school: 'Sacred Heart School',
+        period: '2021'
+      }
+    ],
+    skills: {
+      'Programming Languages': ['Java', 'JavaScript', 'SQL'],
+      'Frontend Development': ['HTML5', 'CSS3', 'React.js (Beginner)'],
+      'Backend Development': ['Node.js', 'Express.js'],
+      'Database Technologies': ['MongoDB', 'SQL'],
+      'Software Engineering': ['OOP Concepts', 'REST APIs', 'CRUD Operations', 'Debugging', 'Software Testing'],
+      'Tools & Platforms': ['Git', 'GitHub', 'MS Office'],
+      'Additional Knowledge': ['Authentication', 'OAuth', 'Full Stack Development', 'Version Control']
+    },
+    projects: [
+      {
+        title: 'AI Resume Builder',
+        stack: 'MERN Stack',
+        bullets: [
+          'Developed a full-stack AI-powered resume builder using MongoDB, Express.js, React.js, and Node.js.',
+          'Implemented REST API integration, frontend-backend communication, and PDF export functionality.',
+          'Designed responsive UI components and optimized application usability.'
+        ]
+      },
+      {
+        title: 'Course Management System',
+        stack: 'MERN Stack',
+        bullets: [
+          'Built a full-stack course management platform for managing courses, student enrollment, and user access.',
+          'Implemented authentication, CRUD operations, and role-based functionalities for students and admins.',
+          'Integrated backend APIs and MongoDB database management for scalable application workflows.'
+        ]
+      },
+      {
+        title: 'To-Do List Web Application',
+        stack: 'HTML · CSS · JavaScript',
+        bullets: [
+          'Developed a responsive task management application with add, update, and delete functionalities.',
+          'Implemented CRUD operations and dynamic UI behavior using JavaScript.'
+        ]
+      }
+    ],
+    experience: [
+      {
+        title: 'MERN Stack Intern',
+        company: 'Rooman Technologies',
+        period: 'Mar 2026 – Apr 2026',
+        location: 'Bangalore, India',
+        bullets: [
+          'Developed full-stack web applications using MongoDB, React.js, Node.js, and Express.js.',
+          'Worked with REST APIs, database integration, and Git/GitHub version control workflows.',
+          'Applied debugging and problem-solving techniques during development tasks.'
+        ]
+      },
+      {
+        title: 'Java Full Stack Developer Trainee',
+        company: 'Rooman Technologies',
+        period: 'Dec 2025 – Feb 2026',
+        location: 'Bangalore, India',
+        bullets: [
+          'Learned Java programming, object-oriented programming concepts, SQL queries, and frontend development.',
+          'Practiced software development fundamentals, debugging, authentication concepts, and database operations.'
+        ]
+      }
+    ],
+    certifications: [
+      { name: 'Getting Started with Java Full-Stack Development', issuer: 'Simplilearn' },
+      { name: 'CI/CD for Beginners', issuer: 'Simplilearn' },
+      { name: 'IT-ITeS Sector Skill Council', issuer: 'NCVET & NASSCOM' },
+      { name: 'mPower Leadership Training', issuer: 'Vertical Eye' }
+    ],
+    softSkills: [
+      'Analytical and Problem-Solving Skills',
+      'Team Collaboration',
+      'Communication Skills',
+      'Adaptability and Continuous Learning',
+      'Project Coordination'
+    ],
+    languages: [
+      { name: 'English', level: 'Professional Proficiency' },
+      { name: 'Hindi', level: 'Fluent' }
+    ]
+  };
+
+  function openResumeModal() {
+    const contactHTML = resumeData.contact.map(c => 
+      c.url ? `<span class="resume-contact"><a href="https://${c.url}" target="_blank" rel="noopener">${c.url}</a></span>` 
+             : `<span class="resume-contact">${c.value}</span>`
+    ).join(' | ');
+
+    const educationHTML = resumeData.education.map(e => `
+      <div class="resume-entry">
+        <div class="resume-entry-title">${e.degree}</div>
+        <div class="resume-entry-subtitle">${e.school}</div>
+        <div class="resume-entry-date">${e.period}</div>
+      </div>
+    `).join('');
+
+    const skillsHTML = Object.entries(resumeData.skills).map(([category, items]) => `
+      <div class="resume-skills-group">
+        <div class="resume-skills-label">${category}</div>
+        <div class="resume-skills-list">
+          ${items.map(item => `<span class="resume-skill">${item}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    const projectsHTML = resumeData.projects.map(p => `
+      <div class="resume-entry">
+        <div class="resume-entry-title">${p.title}</div>
+        <div class="resume-entry-subtitle">${p.stack}</div>
+        <ul class="resume-bullets">
+          ${p.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    const experienceHTML = resumeData.experience.map(e => `
+      <div class="resume-entry">
+        <div class="resume-entry-title">${e.title}</div>
+        <div class="resume-entry-subtitle">${e.company} · ${e.location}</div>
+        <div class="resume-entry-date">${e.period}</div>
+        <ul class="resume-bullets">
+          ${e.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    const certificationsHTML = resumeData.certifications.map(c => `
+      <div class="resume-entry">
+        <div class="resume-entry-title">${c.name}</div>
+        <div class="resume-entry-subtitle">${c.issuer}</div>
+      </div>
+    `).join('');
+
+    const softSkillsHTML = `
+      <div class="resume-skills-list">
+        ${resumeData.softSkills.map(skill => `<span class="resume-skill">${skill}</span>`).join('')}
+      </div>
+    `;
+
+    const languagesHTML = resumeData.languages.map(l => `
+      <div class="resume-entry">
+        <div class="resume-entry-title">${l.name}</div>
+        <div class="resume-entry-subtitle">${l.level}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('resumeContent').innerHTML = `
+      <div class="resume-header">
+        <div class="resume-name">${resumeData.name}</div>
+        <div class="resume-contact">${contactHTML}</div>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Professional Summary</div>
+        <p class="resume-entry-description">${resumeData.summary}</p>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Education</div>
+        ${educationHTML}
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Technical Skills</div>
+        ${skillsHTML}
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Projects</div>
+        ${projectsHTML}
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Experience</div>
+        ${experienceHTML}
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Certifications</div>
+        ${certificationsHTML}
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Soft Skills</div>
+        ${softSkillsHTML}
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title">Languages</div>
+        ${languagesHTML}
+      </div>
+    `;
+
+    document.getElementById('resumeModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('resumePanel').scrollTop = 0;
+  }
+
+  function closeResumeModal() {
+    document.getElementById('resumeModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close resume modal on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeResumeModal();
+    }
   });
 
   /* ── TYPING EFFECT for hero label ── */
