@@ -5,7 +5,7 @@ A modern, responsive, and interactive personal portfolio website built to showca
 
 ## 🌐 Live Demo
 
-https://mellow-dusk-b711c9.netlify.app/
+https://resume-10.netlify.app/
 
 
 
